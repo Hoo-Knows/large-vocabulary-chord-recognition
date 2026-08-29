@@ -1,18 +1,21 @@
-from chordnet_ismir_naive import ChordNet,chord_limit,ChordNetCNN
+from chordnet_ismir_naive import ChordNet
 from mir.nn.train import NetworkInterface
-from extractors.cqt import CQTV2,SimpleChordToID
+from extractors.cqt import CQTV2
 from mir import io,DataEntry
 from extractors.xhmm_ismir import XHMMDecoder
 import numpy as np
 from io_new.chordlab_io import ChordLabIO
 from settings import DEFAULT_SR,DEFAULT_HOP_LENGTH
 import sys
+import pathlib
+
+cwd = pathlib.Path(__file__).parent.resolve()
 
 MODEL_NAMES = ['joint_chord_net_ismir_naive_v1.0_reweight(0.0,10.0)_s%d.best' % i for i in range(5)]
 
 
 def chord_recognition(audio_path, lab_path, chord_dict_name='submission'):
-    hmm = XHMMDecoder(template_file='data/%s_chord_list.txt' % chord_dict_name)
+    hmm = XHMMDecoder(template_file=str(cwd.joinpath('data/%s_chord_list.txt' % chord_dict_name)))
     entry = DataEntry()
     entry.prop.set('sr', DEFAULT_SR)
     entry.prop.set('hop_length', DEFAULT_HOP_LENGTH)
