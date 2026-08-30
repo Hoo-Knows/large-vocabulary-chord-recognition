@@ -1,4 +1,4 @@
-from mir.extractors.extractor_base import *
+from .extractor_base import *
 import librosa
 import numpy as np
 

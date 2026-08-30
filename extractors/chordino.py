@@ -1,12 +1,12 @@
-from mir.extractors.extractor_base import *
-from mir.common import WORKING_PATH,SONIC_ANNOTATOR_PATH,PACKAGE_PATH
-from mir.cache import hasher
+from ..mir.extractors.extractor_base import *
+from ..mir.common import WORKING_PATH,SONIC_ANNOTATOR_PATH,PACKAGE_PATH
+from ..mir.cache import hasher
 import numpy as np
 import subprocess
-from io_new.chordlab_io import ChordLabIO
-from mir.extractors.vamp_extractor import rewrite_extract_n3
-from mir.music_base import get_scale_and_suffix,NUM_TO_ABS_SCALE
-from mir.data_file import FileProxy
+from ..io_new.chordlab_io import ChordLabIO
+from ..mir.extractors.vamp_extractor import rewrite_extract_n3
+from ..mir.music_base import get_scale_and_suffix,NUM_TO_ABS_SCALE
+from ..mir.data_file import FileProxy
 
 class ChordinoLab(ExtractorBase):
 

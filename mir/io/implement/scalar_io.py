@@ -1,4 +1,4 @@
-from mir.io.feature_io_base import *
+from ..feature_io_base import *
 
 
 class FloatIO(FeatureIO):

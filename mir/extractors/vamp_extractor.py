@@ -1,6 +1,6 @@
-from mir.extractors.extractor_base import *
-from mir.common import WORKING_PATH,SONIC_ANNOTATOR_PATH,PACKAGE_PATH
-from mir.cache import hasher
+from .extractor_base import *
+from ..common import WORKING_PATH,SONIC_ANNOTATOR_PATH,PACKAGE_PATH
+from ..cache import hasher
 import numpy as np
 import subprocess
 

@@ -1,5 +1,5 @@
 import numpy as np
-from complex_chord import shift_complex_chord_array,Chord,NUM_TO_ABS_SCALE
+from ..complex_chord import shift_complex_chord_array,Chord,NUM_TO_ABS_SCALE
 
 
 class XHMMDecoder():

@@ -1,7 +1,7 @@
 import numpy as np
 import os
-from mir.music_base import get_scale_and_suffix
-from settings import DEFAULT_SR,DEFAULT_HOP_LENGTH,JAM_DATASET_PATH
+from .mir.music_base import get_scale_and_suffix
+from .settings import DEFAULT_SR,DEFAULT_HOP_LENGTH,JAM_DATASET_PATH
 import sklearn.metrics as skm
 import mir_eval.chord
 from pumpp.task.chord import ChordTagTransformer
@@ -160,7 +160,7 @@ def norm(x, axis=1):
     return x / x.sum(axis=axis, keepdims=True)
 
 if __name__ == '__main__':
-    from results import process_folder
+    from .results import process_folder
     pool=process_folder("output/output_joint_chord_net_ismir_v1.0_triad_only_reweight(1.0,1.0)_s%d.best_hmm_full/jam/",
                               os.path.join(JAM_DATASET_PATH,'chordlab')+'/')
     lib_eval_all(pool,"output/output_joint_chord_net_ismir_v1.0_triad_only_reweight(1.0,1.0)_s%d.best_hmm_full.test.csv")

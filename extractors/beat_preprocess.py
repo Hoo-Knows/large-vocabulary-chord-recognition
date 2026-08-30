@@ -1,8 +1,8 @@
-import datasets
-from io_new.downbeat_io import DownbeatIO
+from .. import datasets
+from ..io_new.downbeat_io import DownbeatIO
 import numpy as np
-from mir.extractors import ExtractorBase
-from mir import io
+from ..mir.extractors import ExtractorBase
+from ..mir import io
 import librosa
 EPS=1e-8
 

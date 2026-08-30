@@ -1,6 +1,6 @@
 from abc import ABC,abstractmethod
-from mir.common import WORKING_PATH
-from mir import io
+from ..common import WORKING_PATH
+from .. import io
 import os
 import pickle
 

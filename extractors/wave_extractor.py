@@ -1,5 +1,5 @@
-from mir.extractors import ExtractorBase
-from mir import io
+from ..mir.extractors import ExtractorBase
+from ..mir import io
 import librosa
 import numpy as np
 

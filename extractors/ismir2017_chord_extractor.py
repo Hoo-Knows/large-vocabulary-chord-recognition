@@ -1,12 +1,12 @@
-from mir.extractors import ExtractorBase
-from mir import io
-from io_new.chordlab_io import ChordLabIO
+from ..mir.extractors import ExtractorBase
+from ..mir import io
+from ..io_new.chordlab_io import ChordLabIO
 import pickle
 import os
 import pumpp
 
-from extractors.ismir2017.train_deep import construct_model
-from train_eval_test_split import get_test_fold_by_name
+from .ismir2017.train_deep import construct_model
+from ..train_eval_test_split import get_test_fold_by_name
 
 MODEL_PATH=R'extractors\ismir2017\data'
 

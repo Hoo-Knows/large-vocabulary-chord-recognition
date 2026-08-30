@@ -1,4 +1,4 @@
-from mir.io.feature_io_base import *
+from ..mir.io.feature_io_base import *
 import numpy as np
 import librosa
 import codecs

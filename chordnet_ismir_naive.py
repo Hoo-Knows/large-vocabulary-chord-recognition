@@ -1,14 +1,14 @@
 import torch.nn as nn
 import torch.nn.functional as F
-from mir.nn.train import NetworkBehavior,NetworkInterface
-from mir.nn.data_storage import FramedRAMDataStorage,FramedH5DataStorage
-from mir.nn.data_decorator import CQTPitchShifter,AbstractPitchShifter,NoPitchShifter
-from mir.nn.data_provider import FramedDataProvider
+from .mir.nn.train import NetworkBehavior,NetworkInterface
+from .mir.nn.data_storage import FramedRAMDataStorage,FramedH5DataStorage
+from .mir.nn.data_decorator import CQTPitchShifter,AbstractPitchShifter,NoPitchShifter
+from .mir.nn.data_provider import FramedDataProvider
 import torch
 import numpy as np
-from complex_chord import Chord,ChordTypeLimit,shift_complex_chord_array_list,complex_chord_chop,enum_to_dict,\
+from .complex_chord import Chord,ChordTypeLimit,shift_complex_chord_array_list,complex_chord_chop,enum_to_dict,\
     TriadTypes,SeventhTypes,NinthTypes,EleventhTypes,ThirteenthTypes,complex_chord_chop_list
-from train_eval_test_split import get_train_set_ids,get_test_set_ids,get_val_set_ids
+from .train_eval_test_split import get_train_set_ids,get_test_set_ids,get_val_set_ids
 
 SHIFT_LOW=-5
 SHIFT_HIGH=6

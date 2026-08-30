@@ -1,4 +1,4 @@
-from mir.io import FeatureIO
+from ..mir.io import FeatureIO
 
 class KeyIO(FeatureIO):
     def read(self, filename, entry):

@@ -1,8 +1,8 @@
 import numpy as np
 import os
-from complex_chord import ChordTypeLimit,Chord,NUM_TO_ABS_SCALE
+from .complex_chord import ChordTypeLimit,Chord,NUM_TO_ABS_SCALE
 import mir_eval
-from settings import JAM_DATASET_PATH
+from .settings import JAM_DATASET_PATH
 import matplotlib.pyplot as plt
 
 MAX_CLASS_SIZE=13
@@ -145,7 +145,7 @@ def plot_result(names,values,sample_counts,l0_counts):
 
 def plot_multiple_results(model_template,legend_list,name_list,plot_id):
     from figures import FIG_OUTPUT_PATH
-    from mir import cache
+    from .mir import cache
     try:
         values_list,names,sample_counts,l0_counts=cache.load('figure_data_upd2')
     except:

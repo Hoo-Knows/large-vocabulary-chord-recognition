@@ -1,6 +1,6 @@
 import pickle
 import os
-from mir.common import WORKING_PATH
+from .common import WORKING_PATH
 import hashlib
 
 __all__=['load','save']

@@ -1,13 +1,13 @@
-from mir.nn.train import NetworkInterface
-import mir.io as io
-import datasets
-from extractors.cqt import CQTV2,SimpleChordToID
-from mir import io,DataEntry
-from io_new.chordlab_io import ChordLabIO
-from extractors.xhmm_decoder import XHMMDecoder,prob_to_spectrogram
-from complex_chord import Chord,ChordTypeLimit,shift_complex_chord_array_list,complex_chord_chop,enum_to_dict,\
+from .mir.nn.train import NetworkInterface
+from .mir import io
+from . import datasets
+from .extractors.cqt import CQTV2,SimpleChordToID
+from .mir import io,DataEntry
+from .io_new.chordlab_io import ChordLabIO
+from .extractors.xhmm_decoder import XHMMDecoder,prob_to_spectrogram
+from .complex_chord import Chord,ChordTypeLimit,shift_complex_chord_array_list,complex_chord_chop,enum_to_dict,\
     TriadTypes,SeventhTypes,NinthTypes,EleventhTypes,ThirteenthTypes
-from mir.music_base import NUM_TO_ABS_SCALE
+from .mir.music_base import NUM_TO_ABS_SCALE
 import os
 import mir_eval
 import numpy as np
@@ -186,7 +186,7 @@ def extract_quality_list_from_file(filename):
 
 def main():
     
-    from settings import JAM_DATASET_PATH,MY_DATASET_PATH
+    from .settings import JAM_DATASET_PATH,MY_DATASET_PATH
     ExperimentTest.ET_confusion_chord=extract_quality_list_from_file('data/submission_chord_list.txt')
     #q = ExperimentTest(True,os.path.join(JAM_DATASET_PATH,'chordlab')+'/',"output/output_joint_chord_net_ismir_flat_v1.0_reweight(1.0,1.0)_s%d.best_hmm_submission/jam/")
     q = ExperimentTest(True,os.path.join(JAM_DATASET_PATH,'chordlab')+'/',"output/output_joint_chord_net_ismir_v1.0_triad_only_reweight(1.0,1.0)_s%d.best_hmm_ismir2017/jam/")
@@ -197,7 +197,7 @@ def main():
 
 def eval_submission(reweight_factor,reweight_max):
 
-    from settings import JAM_DATASET_PATH
+    from .settings import JAM_DATASET_PATH
     ExperimentTest.ET_confusion_chord=extract_quality_list_from_file('data/submission_chord_list.txt')
     q = ExperimentTest(True,os.path.join(JAM_DATASET_PATH,'chordlab')+'/',"output/output_joint_chord_net_ismir_naive_v1.0_reweight(%.1f,%.1f)"%(reweight_factor,reweight_max)+"_s%d.best_hmm_submission/jam/")
     q.calc_accuracy()

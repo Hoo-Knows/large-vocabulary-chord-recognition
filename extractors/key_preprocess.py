@@ -1,7 +1,7 @@
-from mir.extractors import ExtractorBase
-from mir import io
+from ..mir.extractors import ExtractorBase
+from ..mir import io
 import numpy as np
-from mir.music_base import get_scale_and_suffix
+from ..mir.music_base import get_scale_and_suffix
 
 class FramedKey(ExtractorBase):
 

@@ -1,18 +1,18 @@
 import os
-from mir import DataPool,DataEntry,io
-from io_new.jams_io import JamsIO
-from io_new.chordlab_io import ChordLabIO
-from io_new.beatlab_io import BeatLabIO
-from io_new.salami_io import SalamiIO
-from io_new.complex_chord_io import ComplexChordIO
-from io_new.midilab_io import MidiLabIO
-from io_new.lyric_io import LyricIO
-from io_new.downbeat_io import DownbeatIO
+from .mir import DataPool,DataEntry,io
+from .io_new.jams_io import JamsIO
+from .io_new.chordlab_io import ChordLabIO
+from .io_new.beatlab_io import BeatLabIO
+from .io_new.salami_io import SalamiIO
+from .io_new.complex_chord_io import ComplexChordIO
+from .io_new.midilab_io import MidiLabIO
+from .io_new.lyric_io import LyricIO
+from .io_new.downbeat_io import DownbeatIO
 
-from settings import *
+from .settings import *
 from collections import OrderedDict
-from extractors.jam_converter import JamsToChordLabs
-from mir.extractors.librosa_extractor import HPSS
+from .extractors.jam_converter import JamsToChordLabs
+from .mir.extractors.librosa_extractor import HPSS
 
 def set_default_dataset_properties(dataset):
     dataset.set_property('sr', DEFAULT_SR)
@@ -240,15 +240,15 @@ def create_joint_beat_chord_dataset():
     return billboard.join(rwc).join(beatles)
 
 if __name__ == '__main__':
-    from extractors.beat_analysis import analyze_double_speed_error
+    from .extractors.beat_analysis import analyze_double_speed_error
     cb=create_valid_cb_dataset()
-    from extractors.cqt import CQTV2
-    from extractors.key_preprocess import FramedKey
-    from mir.extractors.misc import FrameCount
-    from extractors.madmom_extractor import DBNDownBeatExtractor,DBNDownBeatProbability
-    from extractors.beat_preprocess import BeatAnnotationFromBillboard,TonicAnnotationFromBillboard,BasicStructureAnnotationFromBillboard
-    from extractors.complex_chord_preprocess import chordlab_to_flat_vocab,get_flat_chord_vocab
-    from mir.extractors.librosa_extractor import HPSS
+    from .extractors.cqt import CQTV2
+    from .extractors.key_preprocess import FramedKey
+    from .mir.extractors.misc import FrameCount
+    from .extractors.madmom_extractor import DBNDownBeatExtractor,DBNDownBeatProbability
+    from .extractors.beat_preprocess import BeatAnnotationFromBillboard,TonicAnnotationFromBillboard,BasicStructureAnnotationFromBillboard
+    from .extractors.complex_chord_preprocess import chordlab_to_flat_vocab,get_flat_chord_vocab
+    from .mir.extractors.librosa_extractor import HPSS
     chord_dict=get_flat_chord_vocab('data/submission_chord_list.txt')
 
     cb.append_extractor(DBNDownBeatExtractor,'beat',source='music')
