@@ -244,6 +244,33 @@ class Chord:
             triad=(self.triad-1)*12+1+self.root
         return np.array([triad,self.bass,self.seventh,self.ninth,self.eleventh,self.thirteenth],dtype=np.int8)
 
+    def to_midi(self):
+        m = []
+        if self.triad <= 0: # N chords
+            return m
+
+        triad_offsets = [[4, 7], [3, 7], [5, 7], [2, 7], [3, 6], [4, 8]] # maj, min, sus4, sus2, dim, aug
+        seventh_offsets = [11, 10, 9] # 7, b7, bb7
+        ninth_offsets = [14, 15, 13] # 9, #9, b9
+        eleventh_offsets = [17, 18] # 11, #11
+        thirteenth_offsets = [21, 20] # 13, b13
+
+        m.append(0) # root
+        m.append(triad_offsets[self.triad - 1][0])
+        m.append(triad_offsets[self.triad - 1][1])
+        if self.seventh != 0:       m.append(seventh_offsets[self.seventh - 1])
+        if self.ninth != 0:         m.append(ninth_offsets[self.ninth - 1])
+        if self.eleventh != 0:      m.append(eleventh_offsets[self.eleventh - 1])
+        if self.thirteenth != 0:    m.append(thirteenth_offsets[self.thirteenth - 1])
+
+        # apply inversions by subtracting 12 from every note above the bass
+        for i in range(len(m)):
+            if m[i] >= self.bass - self.root:
+                m[i] -= 12
+
+        # return values around middle C and adjusted by root
+        return [60 + self.root + n for n in m]
+
 def complex_chord_chop(id,limit):
     new_id=id.copy()
     if(new_id[0]>=limit.triad_limit*12+1):
