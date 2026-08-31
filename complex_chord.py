@@ -249,23 +249,27 @@ class Chord:
         if self.triad <= 0: # N chords
             return m
 
-        triad_offsets = [[4, 7], [3, 7], [5, 7], [2, 7], [3, 6], [4, 8]] # maj, min, sus4, sus2, dim, aug
+        triad_offsets = [[4, 7], [3, 7], [5, 7], [2, 7], [3, 6], [4, 8], [7], []] # maj, min, sus4, sus2, dim, aug, power, one
         seventh_offsets = [11, 10, 9] # 7, b7, bb7
         ninth_offsets = [14, 15, 13] # 9, #9, b9
         eleventh_offsets = [17, 18] # 11, #11
-        thirteenth_offsets = [21, 20] # 13, b13
+        thirteenth_offsets = [21, 20, 19] # 13, b13, bb13
 
         m.append(0) # root
-        m.append(triad_offsets[self.triad - 1][0])
-        m.append(triad_offsets[self.triad - 1][1])
+        m.extend(triad_offsets[self.triad])
         if self.seventh != 0:       m.append(seventh_offsets[self.seventh - 1])
         if self.ninth != 0:         m.append(ninth_offsets[self.ninth - 1])
         if self.eleventh != 0:      m.append(eleventh_offsets[self.eleventh - 1])
         if self.thirteenth != 0:    m.append(thirteenth_offsets[self.thirteenth - 1])
 
+        # find position of bass above root and add it if it doesn't exist
+        relative_bass = (self.bass - self.root) % 12
+        if relative_bass not in m:
+            m.append(relative_bass)
+
         # apply inversions by subtracting 12 from every note above the bass
         for i in range(len(m)):
-            if m[i] >= self.bass - self.root:
+            if m[i] >= relative_bass:
                 m[i] -= 12
 
         # return values around middle C and adjusted by root
