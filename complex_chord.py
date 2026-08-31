@@ -256,21 +256,22 @@ class Chord:
         thirteenth_offsets = [21, 20, 19] # 13, b13, bb13
 
         m.append(0) # root
-        m.extend(triad_offsets[self.triad])
+        m.extend(triad_offsets[self.triad - 1])
         if self.seventh != 0:       m.append(seventh_offsets[self.seventh - 1])
         if self.ninth != 0:         m.append(ninth_offsets[self.ninth - 1])
         if self.eleventh != 0:      m.append(eleventh_offsets[self.eleventh - 1])
         if self.thirteenth != 0:    m.append(thirteenth_offsets[self.thirteenth - 1])
 
         # find position of bass above root and add it if it doesn't exist
-        relative_bass = (self.bass - self.root) % 12
-        if relative_bass not in m:
-            m.append(relative_bass)
+        if self.bass != self.root:
+            relative_bass = (self.bass - self.root) % 12
+            if relative_bass not in m:
+                m.append(relative_bass)
 
-        # apply inversions by subtracting 12 from every note above the bass
-        for i in range(len(m)):
-            if m[i] >= relative_bass:
-                m[i] -= 12
+            # apply inversions by subtracting 12 from every note above the bass
+            for i in range(len(m)):
+                if m[i] >= relative_bass:
+                    m[i] -= 12
 
         # return values around middle C and adjusted by root
         return [60 + self.root + n for n in m]
